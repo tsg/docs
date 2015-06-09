@@ -204,9 +204,9 @@
 					
 					<li><a href="#" class="m-search" id="header-search"></a></li>
 					
-					<li><a href="/guide" class="m-guide" id=""></a></li>
+					<li><a href="/guide" class="m-docs" id="mobile-docs"></a></li>
 					
-					<li><a href="/contact" class="m-contact" id=""></a></li>
+					<li><a href="/contact" class="m-contact" id="mobile-contact"></a></li>
 					
 				</ul>											
 				<nav class="nav-menu">
@@ -545,7 +545,7 @@
 			background: url("/assets/blt174b13be89ff803c/m-search-icon.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
-		.m-shortcuts li a.m-guide {
+		.m-shortcuts li a.m-docs {
 			background: url("/assets/blt5ba03f594a7d610a/m-guide-icon.png") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
@@ -666,7 +666,7 @@ apache logs by status code:</p><div class="pre_wrapper"><pre class="programlisti
   statsd {
     increment =&gt; "apache.%{[response][status]}"
   }
-}</pre></div><p>You can also format times using in this sprintf format. Instead of specifying a field name, use the <code class="literal">+FORMAT</code> syntax where <code class="literal">FORMAT</code> is a <a class="ulink" href="http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html" target="_top">time format</a>.</p><p>For example, if you want to use the file output to write to logs based on the
+}</pre></div><p>You can also format times using this sprintf format. Instead of specifying a field name, use the <code class="literal">+FORMAT</code> syntax where <code class="literal">FORMAT</code> is a <a class="ulink" href="http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html" target="_top">time format</a>.</p><p>For example, if you want to use the file output to write to logs based on the
 hour and the <span class="emphasis"><em>type</em></span> field:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">output {
   file {
     path =&gt; "/var/log/%{type}.%{+yyyy.MM.dd.HH}"
