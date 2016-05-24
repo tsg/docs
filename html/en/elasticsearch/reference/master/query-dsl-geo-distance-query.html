@@ -61,15 +61,15 @@
 
 
 	
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/skel.css?q=500" />
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/style.css?q=500" />
-	<script src="https://static-www.elastic.co/static/js/skel.min.js?q=500"></script>
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/skel.css?q=500" />
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/style.css?q=500" />
+	<script src="https://stag-static-www.elastic.co/static/js/skel.min.js?q=500"></script>
 	
-		<script type="text/javascript">form_name = "" ; cdn_url="https://static-www.elastic.co";cdn_slug = "500"</script>
+		<script type="text/javascript">form_name = "" ; cdn_url="https://stag-static-www.elastic.co";cdn_slug = "500"</script>
 	
-	<script src="https://static-www.elastic.co/static/js/init.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/init.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
 	<!--<script type="text/javascript">
 	    (function() {
 	        var path = '//easy.myfonts.net/v2/js?sid=10336(font-family=Avenir+35+Light)&sid=10338(font-family=Avenir+55+Roman)&sid=10340(font-family=Avenir+85+Heavy)&sid=10344(font-family=Avenir+65+Medium)&key=nAD6PCOPrX',
@@ -965,15 +965,15 @@
 	
 	
 		.m-shortcuts li a.m-search {
-			background: url("https://static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-docs {
-			background: url("https://static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-contact {
-			background: url("https://static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 		
 </style>
@@ -1008,83 +1008,117 @@ version&#39;s documentation here</a>.
           <a href="query-dsl-geo-distance-range-query.html">Geo Distance Range Query
                »
             </a></span></div><div class="section"><div class="titlepage"><div><div><h2 class="title"><a id="query-dsl-geo-distance-query"></a>Geo Distance Query<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h2></div></div></div><p>Filters documents that include only hits that exists within a specific
-distance from a geo point. Assuming the following indexed json:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
+distance from a geo point. Assuming the following mapping and indexed
+document:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">PUT /my_locations
+{
+    "mappings": {
+        "location": {
+            "properties": {
+                "pin": {
+                    "properties": {
+                        "location": {
+                            "type": "geo_point"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+PUT /my_locations/location/1
+{
     "pin" : {
         "location" : {
             "lat" : 40.12,
             "lon" : -71.34
         }
     }
-}</pre></div><p>Then the following simple query can be executed with a <code class="literal">geo_distance</code>
-filter:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "bool" : {
-        "must" : {
-            "match_all" : {}
-        },
-        "filter" : {
-            "geo_distance" : {
-                "distance" : "200km",
-                "pin.location" : {
-                    "lat" : 40,
-                    "lon" : -70
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-distance-query/1.json"></div><p>Then the following simple query can be executed with a <code class="literal">geo_distance</code>
+filter:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /my_locations/location/_search
+{
+    "query": {
+        "bool" : {
+            "must" : {
+                "match_all" : {}
+            },
+            "filter" : {
+                "geo_distance" : {
+                    "distance" : "200km",
+                    "pin.location" : {
+                        "lat" : 40,
+                        "lon" : -70
+                    }
                 }
             }
         }
     }
-}</pre></div><h4><a id="_accepted_formats_2"></a>Accepted Formats<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><p>In much the same way the <code class="literal">geo_point</code> type can accept different
-representation of the geo point, the filter can accept it as well:</p><h5><a id="_lat_lon_as_properties_3"></a>Lat Lon As Properties<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "bool" : {
-        "must" : {
-            "match_all" : {}
-        },
-        "filter" : {
-            "geo_distance" : {
-                "distance" : "12km",
-                "pin.location" : {
-                    "lat" : 40,
-                    "lon" : -70
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-distance-query/2.json"></div><h4><a id="_accepted_formats_2"></a>Accepted Formats<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><p>In much the same way the <code class="literal">geo_point</code> type can accept different
+representation of the geo point, the filter can accept it as well:</p><h5><a id="_lat_lon_as_properties_3"></a>Lat Lon As Properties<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /my_locations/location/_search
+{
+    "query": {
+        "bool" : {
+            "must" : {
+                "match_all" : {}
+            },
+            "filter" : {
+                "geo_distance" : {
+                    "distance" : "12km",
+                    "pin.location" : {
+                        "lat" : 40,
+                        "lon" : -70
+                    }
                 }
             }
         }
     }
-}</pre></div><h5><a id="_lat_lon_as_array_3"></a>Lat Lon As Array<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><p>Format in <code class="literal">[lon, lat]</code>, note, the order of lon/lat here in order to
-conform with <a class="ulink" href="http://geojson.org/" target="_top">GeoJSON</a>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "bool" : {
-        "must" : {
-            "match_all" : {}
-        },
-        "filter" : {
-            "geo_distance" : {
-                "distance" : "12km",
-                "pin.location" : [-70, 40]
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-distance-query/3.json"></div><h5><a id="_lat_lon_as_array_3"></a>Lat Lon As Array<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><p>Format in <code class="literal">[lon, lat]</code>, note, the order of lon/lat here in order to
+conform with <a class="ulink" href="http://geojson.org/" target="_top">GeoJSON</a>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /my_locations/location/_search
+{
+    "query": {
+        "bool" : {
+            "must" : {
+                "match_all" : {}
+            },
+            "filter" : {
+                "geo_distance" : {
+                    "distance" : "12km",
+                    "pin.location" : [-70, 40]
+                }
             }
         }
     }
-}</pre></div><h5><a id="_lat_lon_as_string_3"></a>Lat Lon As String<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><p>Format in <code class="literal">lat,lon</code>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "bool" : {
-        "must" : {
-            "match_all" : {}
-        },
-        "filter" : {
-            "geo_distance" : {
-                "distance" : "12km",
-                "pin.location" : "40,-70"
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-distance-query/4.json"></div><h5><a id="_lat_lon_as_string_3"></a>Lat Lon As String<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><p>Format in <code class="literal">lat,lon</code>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /my_locations/location/_search
+{
+    "query": {
+        "bool" : {
+            "must" : {
+                "match_all" : {}
+            },
+            "filter" : {
+                "geo_distance" : {
+                    "distance" : "12km",
+                    "pin.location" : "40,-70"
+                }
             }
         }
     }
-}</pre></div><h5><a id="_geohash_3"></a>Geohash<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "bool" : {
-        "must" : {
-            "match_all" : {}
-        },
-        "filter" : {
-            "geo_distance" : {
-                "distance" : "12km",
-                "pin.location" : "drm3btev3e86"
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-distance-query/5.json"></div><h5><a id="_geohash_3"></a>Geohash<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h5><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /my_locations/location/_search
+{
+    "query": {
+        "bool" : {
+            "must" : {
+                "match_all" : {}
+            },
+            "filter" : {
+                "geo_distance" : {
+                    "distance" : "12km",
+                    "pin.location" : "drm3btev3e86"
+                }
             }
         }
     }
-}</pre></div><h4><a id="_options_4"></a>Options<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><p>The following are options allowed on the filter:</p><div class="horizontal"><table cellpadding="4px" border="0"><colgroup><col /><col /></colgroup><tbody valign="top"><tr><td valign="top">
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-distance-query/6.json"></div><h4><a id="_options_4"></a>Options<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-distance-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><p>The following are options allowed on the filter:</p><div class="horizontal"><table cellpadding="4px" border="0"><colgroup><col /><col /></colgroup><tbody valign="top"><tr><td valign="top">
 <p>
 <code class="literal">distance</code>
 </p>
@@ -1255,15 +1289,15 @@ is not mapped.</p></div><div class="navfooter"><span class="prev"><a href="query
 
 <style type="text/css">
 	
-		.facebook{background:url("https://static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
+		.facebook{background:url("https://stag-static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
 	
-		.twitter{background:url("https://static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
+		.twitter{background:url("https://stag-static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
 	
-		.linkedin{background:url("https://static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
+		.linkedin{background:url("https://stag-static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
 	
-		.xing{background:url("https://static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
+		.xing{background:url("https://stag-static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
 	
-		.youtube{background:url("https://static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
+		.youtube{background:url("https://stag-static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
 	
 </style>
 
@@ -1288,8 +1322,8 @@ MktoForms2.loadForm("//app-lon02.marketo.com", "813-MAM-392", 1398,function(form
    	<script type="text/javascript">
 	var suggestionsUrl = "https://search.elastic.co/suggest";	
 </script>
-<script src="https://static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
-<script src="https://static-www.elastic.co/static/js/script.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/script.js?q=500"></script>
 
 
    	

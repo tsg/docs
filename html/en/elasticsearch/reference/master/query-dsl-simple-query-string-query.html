@@ -61,15 +61,15 @@
 
 
 	
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/skel.css?q=500" />
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/style.css?q=500" />
-	<script src="https://static-www.elastic.co/static/js/skel.min.js?q=500"></script>
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/skel.css?q=500" />
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/style.css?q=500" />
+	<script src="https://stag-static-www.elastic.co/static/js/skel.min.js?q=500"></script>
 	
-		<script type="text/javascript">form_name = "" ; cdn_url="https://static-www.elastic.co";cdn_slug = "500"</script>
+		<script type="text/javascript">form_name = "" ; cdn_url="https://stag-static-www.elastic.co";cdn_slug = "500"</script>
 	
-	<script src="https://static-www.elastic.co/static/js/init.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/init.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
 	<!--<script type="text/javascript">
 	    (function() {
 	        var path = '//easy.myfonts.net/v2/js?sid=10336(font-family=Avenir+35+Light)&sid=10338(font-family=Avenir+55+Roman)&sid=10340(font-family=Avenir+85+Heavy)&sid=10344(font-family=Avenir+65+Medium)&key=nAD6PCOPrX',
@@ -965,15 +965,15 @@
 	
 	
 		.m-shortcuts li a.m-search {
-			background: url("https://static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-docs {
-			background: url("https://static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-contact {
-			background: url("https://static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 		
 </style>
@@ -1010,14 +1010,17 @@ version&#39;s documentation here</a>.
             </a></span></div><div class="section"><div class="titlepage"><div><div><h2 class="title"><a id="query-dsl-simple-query-string-query"></a>Simple Query String Query<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/simple-query-string-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h2></div></div></div><p>A query that uses the SimpleQueryParser to parse its context. Unlike the
 regular <code class="literal">query_string</code> query, the <code class="literal">simple_query_string</code> query will never
 throw an exception, and discards invalid parts of the query. Here is
-an example:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
+an example:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
+  "query": {
     "simple_query_string" : {
         "query": "\"fried eggs\" +(eggplant | potato) -frittata",
         "analyzer": "snowball",
         "fields": ["body^5","_all"],
         "default_operator": "and"
     }
-}</pre></div><p>The <code class="literal">simple_query_string</code> top level parameters include:</p><div class="informaltable"><table cellpadding="4px" border="1"><colgroup><col class="col_1" /><col class="col_2" /></colgroup><thead><tr><th align="left" valign="top">Parameter </th><th align="left" valign="top">Description</th></tr></thead><tbody><tr><td align="left" valign="top"><p><code class="literal">query</code></p></td><td align="left" valign="top"><p>The actual query to be parsed. See below for syntax.</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">fields</code></p></td><td align="left" valign="top"><p>The fields to perform the parsed query against. Defaults to the
+  }
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-simple-query-string-query/1.json"></div><p>The <code class="literal">simple_query_string</code> top level parameters include:</p><div class="informaltable"><table cellpadding="4px" border="1"><colgroup><col class="col_1" /><col class="col_2" /></colgroup><thead><tr><th align="left" valign="top">Parameter </th><th align="left" valign="top">Description</th></tr></thead><tbody><tr><td align="left" valign="top"><p><code class="literal">query</code></p></td><td align="left" valign="top"><p>The actual query to be parsed. See below for syntax.</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">fields</code></p></td><td align="left" valign="top"><p>The fields to perform the parsed query against. Defaults to the
 <code class="literal">index.query.default_field</code> index settings, which in turn defaults to <code class="literal">_all</code>.</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">default_operator</code></p></td><td align="left" valign="top"><p>The default operator used if no explicit operator
 is specified. For example, with a default operator of <code class="literal">OR</code>, the query
 <code class="literal">capital of Hungary</code> is translated to <code class="literal">capital OR of OR Hungary</code>, and
@@ -1056,19 +1059,25 @@ string syntax, the <code class="literal">index.query.default_field</code> will b
 which field to search on. It defaults to <code class="literal">_all</code> field.</p><p>So, if <code class="literal">_all</code> field is disabled, it might make sense to change it to set
 a different default field.</p><h4><a id="_multi_field_2"></a>Multi Field<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/simple-query-string-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><p>The fields parameter can also include pattern based field names,
 allowing to automatically expand to the relevant fields (dynamically
-introduced fields included). For example:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "simple_query_string" : {
-        "fields" : ["content", "name.*^5"],
-        "query" : "foo bar baz"
+introduced fields included). For example:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
+    "query": {
+        "simple_query_string" : {
+            "fields" : ["content", "name.*^5"],
+            "query" : "foo bar baz"
+        }
     }
-}</pre></div><h4><a id="_flags"></a>Flags<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/simple-query-string-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><p><code class="literal">simple_query_string</code> support multiple flags to specify which parsing features
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-simple-query-string-query/2.json"></div><h4><a id="_flags"></a>Flags<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/simple-query-string-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><p><code class="literal">simple_query_string</code> support multiple flags to specify which parsing features
 should be enabled. It is specified as a <code class="literal">|</code>-delimited string with the
-<code class="literal">flags</code> parameter:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "simple_query_string" : {
-        "query" : "foo | bar + baz*",
-        "flags" : "OR|AND|PREFIX"
+<code class="literal">flags</code> parameter:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
+    "query": {
+        "simple_query_string" : {
+            "query" : "foo | bar + baz*",
+            "flags" : "OR|AND|PREFIX"
+        }
     }
-}</pre></div><p>The available flags are: <code class="literal">ALL</code>, <code class="literal">NONE</code>, <code class="literal">AND</code>, <code class="literal">OR</code>, <code class="literal">NOT</code>, <code class="literal">PREFIX</code>, <code class="literal">PHRASE</code>,
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-simple-query-string-query/3.json"></div><p>The available flags are: <code class="literal">ALL</code>, <code class="literal">NONE</code>, <code class="literal">AND</code>, <code class="literal">OR</code>, <code class="literal">NOT</code>, <code class="literal">PREFIX</code>, <code class="literal">PHRASE</code>,
 <code class="literal">PRECEDENCE</code>, <code class="literal">ESCAPE</code>, <code class="literal">WHITESPACE</code>, <code class="literal">FUZZY</code>, <code class="literal">NEAR</code>, and <code class="literal">SLOP</code>.</p></div><div class="navfooter"><span class="prev"><a href="query-dsl-query-string-query.html">
               « 
               Query String Query</a>
@@ -1174,15 +1183,15 @@ should be enabled. It is specified as a <code class="literal">|</code>-delimited
 
 <style type="text/css">
 	
-		.facebook{background:url("https://static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
+		.facebook{background:url("https://stag-static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
 	
-		.twitter{background:url("https://static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
+		.twitter{background:url("https://stag-static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
 	
-		.linkedin{background:url("https://static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
+		.linkedin{background:url("https://stag-static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
 	
-		.xing{background:url("https://static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
+		.xing{background:url("https://stag-static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
 	
-		.youtube{background:url("https://static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
+		.youtube{background:url("https://stag-static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
 	
 </style>
 
@@ -1207,8 +1216,8 @@ MktoForms2.loadForm("//app-lon02.marketo.com", "813-MAM-392", 1398,function(form
    	<script type="text/javascript">
 	var suggestionsUrl = "https://search.elastic.co/suggest";	
 </script>
-<script src="https://static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
-<script src="https://static-www.elastic.co/static/js/script.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/script.js?q=500"></script>
 
 
    	

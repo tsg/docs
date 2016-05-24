@@ -3,33 +3,34 @@ Repo: beats
   filebeat/docs_1.0.1    d25885c  Merge pull request #971 from dedemorton/support_changed_chunklevel
   filebeat/docs_1.1      8faf452  Increment versions for elastic stack products (#1436)
   filebeat/docs_1.2      24ebcc0  Fix mismatch between lists of supported protocols (#1707)
-  filebeat/docs_master   52aac04  Update docs for new configuration files (#1709)
+  filebeat/docs_master   9229503  vendor go-lumber (#1712)
   libbeat/docs_1.0.1     d25885c  Merge pull request #971 from dedemorton/support_changed_chunklevel
   libbeat/docs_1.1       8faf452  Increment versions for elastic stack products (#1436)
-  libbeat/docs_1.2       2634b2c  Add banner indicating that guide for creating new beat is out of date (#1692)
-  libbeat/docs_master    52aac04  Update docs for new configuration files (#1709)
+  libbeat/docs_1.2       24ebcc0  Fix mismatch between lists of supported protocols (#1707)
+  libbeat/docs_master    9229503  vendor go-lumber (#1712)
+  metricbeat/docs_master 9229503  vendor go-lumber (#1712)
   packetbeat/docs_1.0.1  d25885c  Merge pull request #971 from dedemorton/support_changed_chunklevel
   packetbeat/docs_1.1    8faf452  Increment versions for elastic stack products (#1436)
   packetbeat/docs_1.2    24ebcc0  Fix mismatch between lists of supported protocols (#1707)
-  packetbeat/docs_master 52aac04  Update docs for new configuration files (#1709)
+  packetbeat/docs_master 9229503  vendor go-lumber (#1712)
   topbeat/docs_1.0.1     d25885c  Merge pull request #971 from dedemorton/support_changed_chunklevel
   topbeat/docs_1.1       8faf452  Increment versions for elastic stack products (#1436)
-  topbeat/docs_1.2       4524df9  Versions bump 1.2.3 (#1653)
-  topbeat/docs_master    52aac04  Update docs for new configuration files (#1709)
+  topbeat/docs_1.2       24ebcc0  Fix mismatch between lists of supported protocols (#1707)
+  topbeat/docs_master    9229503  vendor go-lumber (#1712)
   winlogbeat/docs_1.1    8faf452  Increment versions for elastic stack products (#1436)
-  winlogbeat/docs_1.2    4524df9  Versions bump 1.2.3 (#1653)
-  winlogbeat/docs_master 52aac04  Update docs for new configuration files (#1709)
+  winlogbeat/docs_1.2    24ebcc0  Fix mismatch between lists of supported protocols (#1707)
+  winlogbeat/docs_master 9229503  vendor go-lumber (#1712)
 
 Repo: curator
 --------------------------------------------------------------------------------
-  docs/asciidoc_3.3   df6ebee  Fix documentation for the show command
-  docs/asciidoc_3.4   e80458e  Update docs for 3.4.1
-  docs/asciidoc_3.5   7ffc821  Merge pull request #586 from untergeek/3.5.1_docs
-  docs/asciidoc_4.0   12c6e63  Merge branch 'master' into 4.x
+  docs/asciidoc_3.3 df6ebee  Fix documentation for the show command
+  docs/asciidoc_3.4 e80458e  Update docs for 3.4.1
+  docs/asciidoc_3.5 7ffc821  Merge pull request #586 from untergeek/3.5.1_docs
+  docs/asciidoc_4.0 12c6e63  Merge branch 'master' into 4.x
 
 Repo: elasticsearch
 --------------------------------------------------------------------------------
-  docs/community-clients_master be0bbce  Clarify squashing of pull request commits
+  docs/community-clients_master d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
   docs/groovy-api_0.90          9078bbf  Merge pull request #14228 from ByronDDelpinal/patch-1
   docs/groovy-api_1.3           84e7421  Backs out early link fix.
   docs/groovy-api_1.4           0555877  Removed docs page header as is now automated by docs build
@@ -37,10 +38,10 @@ Repo: elasticsearch
   docs/groovy-api_1.6           7f9beaf  Java API docs should point to ES ref 1.6
   docs/groovy-api_1.7           b85689a  Fix response format of /customer/external/1?pretty
   docs/groovy-api_2.0           67e3a11  Updated decay-function image in function_score query
-  docs/groovy-api_2.1           af63719  Revert "[TEST] increase log level to DEBUG for bwc tests"
-  docs/groovy-api_2.2           d38fba7  Removed docs from mapper-attachment about copy_to
-  docs/groovy-api_2.3           46af698  Fix response format of /customer/external/1?pretty
-  docs/groovy-api_master        be0bbce  Clarify squashing of pull request commits
+  docs/groovy-api_2.1           98b0374  [TEST] core must be installed after change before running bwc tests
+  docs/groovy-api_2.2           e261efe  [TEST] core must be installed after change before running bwc tests
+  docs/groovy-api_2.3           da83b73  Add missing example in the _reindex documentation (#18486)
+  docs/groovy-api_master        d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
   docs/java-api_0.90            9078bbf  Merge pull request #14228 from ByronDDelpinal/patch-1
   docs/java-api_1.3             84e7421  Backs out early link fix.
   docs/java-api_1.4             0555877  Removed docs page header as is now automated by docs build
@@ -48,18 +49,18 @@ Repo: elasticsearch
   docs/java-api_1.6             7f9beaf  Java API docs should point to ES ref 1.6
   docs/java-api_1.7             b85689a  Fix response format of /customer/external/1?pretty
   docs/java-api_2.0             67e3a11  Updated decay-function image in function_score query
-  docs/java-api_2.1             af63719  Revert "[TEST] increase log level to DEBUG for bwc tests"
-  docs/java-api_2.2             d38fba7  Removed docs from mapper-attachment about copy_to
-  docs/java-api_2.3             46af698  Fix response format of /customer/external/1?pretty
-  docs/java-api_master          27cc2fe  Moved the percolator from core to its own module
-  docs/perl_master              be0bbce  Clarify squashing of pull request commits
+  docs/java-api_2.1             98b0374  [TEST] core must be installed after change before running bwc tests
+  docs/java-api_2.2             e261efe  [TEST] core must be installed after change before running bwc tests
+  docs/java-api_2.3             da83b73  Add missing example in the _reindex documentation (#18486)
+  docs/java-api_master          d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
+  docs/perl_master              d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
   docs/plugins_1.7              b85689a  Fix response format of /customer/external/1?pretty
   docs/plugins_2.0              67e3a11  Updated decay-function image in function_score query
-  docs/plugins_2.1              af63719  Revert "[TEST] increase log level to DEBUG for bwc tests"
-  docs/plugins_2.2              d38fba7  Removed docs from mapper-attachment about copy_to
-  docs/plugins_2.3              46af698  Fix response format of /customer/external/1?pretty
-  docs/plugins_master           c257e2c  Remove settings and system properties entanglement
-  docs/python_master            be0bbce  Clarify squashing of pull request commits
+  docs/plugins_2.1              98b0374  [TEST] core must be installed after change before running bwc tests
+  docs/plugins_2.2              e261efe  [TEST] core must be installed after change before running bwc tests
+  docs/plugins_2.3              da83b73  Add missing example in the _reindex documentation (#18486)
+  docs/plugins_master           d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
+  docs/python_master            d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
   docs/reference_0.90           9078bbf  Merge pull request #14228 from ByronDDelpinal/patch-1
   docs/reference_1.3            84e7421  Backs out early link fix.
   docs/reference_1.4            0555877  Removed docs page header as is now automated by docs build
@@ -67,11 +68,11 @@ Repo: elasticsearch
   docs/reference_1.6            7f9beaf  Java API docs should point to ES ref 1.6
   docs/reference_1.7            b85689a  Fix response format of /customer/external/1?pretty
   docs/reference_2.0            67e3a11  Updated decay-function image in function_score query
-  docs/reference_2.1            af63719  Revert "[TEST] increase log level to DEBUG for bwc tests"
-  docs/reference_2.2            d38fba7  Removed docs from mapper-attachment about copy_to
+  docs/reference_2.1            98b0374  [TEST] core must be installed after change before running bwc tests
+  docs/reference_2.2            e261efe  [TEST] core must be installed after change before running bwc tests
   docs/reference_2.3            da83b73  Add missing example in the _reindex documentation (#18486)
-  docs/reference_master         ea3320e  Merge pull request #18424 from MaineC/docs/add_console_to_highlighting
-  docs/resiliency_master        be0bbce  Clarify squashing of pull request commits
+  docs/reference_master         d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
+  docs/resiliency_master        d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
   docs/river_0.90               9078bbf  Merge pull request #14228 from ByronDDelpinal/patch-1
   docs/river_1.3                84e7421  Backs out early link fix.
   docs/river_1.4                0555877  Removed docs page header as is now automated by docs build
@@ -79,77 +80,77 @@ Repo: elasticsearch
   docs/river_1.6                7f9beaf  Java API docs should point to ES ref 1.6
   docs/river_1.7                b85689a  Fix response format of /customer/external/1?pretty
   docs/river_2.0                67e3a11  Updated decay-function image in function_score query
-  docs/ruby_master              be0bbce  Clarify squashing of pull request commits
+  docs/ruby_master              d76f871  Merge pull request #18544 from MaineC/docs/add_autosense_to_query_dsl
 
 Repo: elasticsearch-hadoop
 --------------------------------------------------------------------------------
   docs/src/reference/asciidoc_2.0    a939a9a  Changed ES docs to point to v1.7
   docs/src/reference/asciidoc_2.1    46f156f  bump version
   docs/src/reference/asciidoc_2.2    c11e37b  2.2.0 release
-  docs/src/reference/asciidoc_2.3    9153ecb  2.3.2 release
+  docs/src/reference/asciidoc_2.3    cae8b76  2.3.2 release
   docs/src/reference/asciidoc_master fda2e7d  Bump version
 
 Repo: elasticsearch-js
 --------------------------------------------------------------------------------
-  docs_11.0           e230f29  [apis] regenerate
-  docs_12.0           4fed459  [apis] regenerate
+  docs_11.0 8b90ee9  update esvm config to work with latest masters
+  docs_12.0 4fed459  [apis] regenerate
 
 Repo: elasticsearch-net
 --------------------------------------------------------------------------------
-  docs_1.x            d23ad5b  Move docs into root of docs dir
-  docs_2.x            914f366  Merge branch 'fix/2.x-rescore-query' into 2.x
-  docs_master         ab136d0  Allow multiple queries for rescoring
+  docs_1.x    d23ad5b  Move docs into root of docs dir
+  docs_2.x    914f366  Merge branch 'fix/2.x-rescore-query' into 2.x
+  docs_master dd40b6e  Rename FileField to ContentField
 
 Repo: elasticsearch-php
 --------------------------------------------------------------------------------
-  docs_0.4            ecd9be4  Docs: Fixed broken link.
-  docs_1.0            eaf6e4a  Update travis
-  docs_2.0            1f07b31  [DOCS] Usage example for creating ClientBuilder fixed (#406)
-  docs_master         fbe6f92  Automated PSR-2 style cleanup
+  docs_0.4    ecd9be4  Docs: Fixed broken link.
+  docs_1.0    eaf6e4a  Update travis
+  docs_2.0    1f07b31  [DOCS] Usage example for creating ClientBuilder fixed (#406)
+  docs_master fbe6f92  Automated PSR-2 style cleanup
 
 Repo: found
 --------------------------------------------------------------------------------
-  docs_1.0            a63fa62  Merge pull request #1013 from elastic/master
+  docs_1.0 a63fa62  Merge pull request #1013 from elastic/master
 
 Repo: guide
 --------------------------------------------------------------------------------
-  ._1.x               485f5c0  Merge pull request #469 from elastic/jpcarey-patch-1
-  ._2.x               8532073  Resolve error in "More-Complicated Searches" example (#533)
-  ._master            138405f  Update 30_Tutorial_Search.asciidoc
+  ._1.x    485f5c0  Merge pull request #469 from elastic/jpcarey-patch-1
+  ._2.x    8532073  Resolve error in "More-Complicated Searches" example (#533)
+  ._master 138405f  Update 30_Tutorial_Search.asciidoc
 
 Repo: kibana
 --------------------------------------------------------------------------------
-  docs_3.0            80d995c  Merge pull request #5019 from palecur/origin/3.0
-  docs_4.0            cd0dc43  Fixed path to Shield 1.3.
-  docs_4.1            94fbd31  Bump to 4.1.8-snapshot
-  docs_4.2            738b2c1  Merge pull request #6807 from elastic/jasper/backport/6792/6802/4.2
-  docs_4.3            ba4bd84  Merge pull request #6806 from elastic/jasper/backport/6792/6802/4.3
-  docs_4.4            4f93d93  Merge pull request #7161 from sandeepkanabar/patch-1
-  docs_4.5            9707e33  Merge pull request #7224 from lukasolson/backport/7085/4.5
-  docs_5.0            8a3483b  Fixes incorrect version, updates HTTP to HTTPS in sample URLs
-  docs_master         80ad93c  Merge pull request #7205 from lukasolson/fix/status-allow-anonymous
+  docs_3.0    80d995c  Merge pull request #5019 from palecur/origin/3.0
+  docs_4.0    cd0dc43  Fixed path to Shield 1.3.
+  docs_4.1    94fbd31  Bump to 4.1.8-snapshot
+  docs_4.2    738b2c1  Merge pull request #6807 from elastic/jasper/backport/6792/6802/4.2
+  docs_4.3    ba4bd84  Merge pull request #6806 from elastic/jasper/backport/6792/6802/4.3
+  docs_4.4    4f93d93  Merge pull request #7161 from sandeepkanabar/patch-1
+  docs_4.5    5847228  Merge pull request #7259 from elastic/jasper/backport/7257/4.5
+  docs_5.0    8a3483b  Fixes incorrect version, updates HTTP to HTTPS in sample URLs
+  docs_master 95132dd  Merge pull request #7256 from LeeDr/fixSaveVis
 
 Repo: logstash
 --------------------------------------------------------------------------------
-  docs_1.5            678c871  Update doc links to W3Schools
-  docs_2.0            8936974  Default codec for rabbitmq is json
-  docs_2.1            3331717  Update doc links to W3Schools
-  docs_2.2            f824e7d  Update doc links to W3Schools
-  docs_2.3            7558756  Update doc links to W3Schools
-  docs_5.0            5645b8a  Merge pull request #205 from dedemorton/sync_docs_05.23.16_5.0
-  docs_master         1e14924  improve s3 docs
+  docs_1.5    678c871  Update doc links to W3Schools
+  docs_2.0    8936974  Default codec for rabbitmq is json
+  docs_2.1    3331717  Update doc links to W3Schools
+  docs_2.2    f824e7d  Update doc links to W3Schools
+  docs_2.3    7558756  Update doc links to W3Schools
+  docs_5.0    5645b8a  Merge pull request #205 from dedemorton/sync_docs_05.23.16_5.0
+  docs_master 1e14924  improve s3 docs
 
 Repo: sense
 --------------------------------------------------------------------------------
-  docs_master         2077443  Merge pull request #135 from sergey-alekseev/patch-1
+  docs_master 2077443  Merge pull request #135 from sergey-alekseev/patch-1
 
 Repo: x-plugins
 --------------------------------------------------------------------------------
-  docs/public/graph_2.3           1bc2069  Docs: Bumped version & added RNs for 2.3.3.
+  docs/public/graph_2.3           561aa5b  Docs: Added info about combining FLS & DLS. Closes #2133
   docs/public/marvel_2.0          1cdd730  Shield Docs: Fixed link to plugin-descriptor.properties file.
   docs/public/marvel_2.1          2341ebd  Shield Docs: Fixed link to plugin-descriptor.properties file.
   docs/public/marvel_2.2          925ada4  Shield Docs: Fixed link to plugin-descriptor.properties file.
-  docs/public/marvel_2.3          1bc2069  Docs: Bumped version & added RNs for 2.3.3.
+  docs/public/marvel_2.3          561aa5b  Docs: Added info about combining FLS & DLS. Closes #2133
   docs/public/marvel_marvel-1.3   92b2aff  Merge branch '1.3-reorganize-docs' of /Users/tsullivan/code/marvel-1.3 into marvel-1.3
   docs/public/shield_2.0          1cdd730  Shield Docs: Fixed link to plugin-descriptor.properties file.
   docs/public/shield_2.1          2341ebd  Shield Docs: Fixed link to plugin-descriptor.properties file.
@@ -162,6 +163,6 @@ Repo: x-plugins
   docs/public/watcher_2.0         1cdd730  Shield Docs: Fixed link to plugin-descriptor.properties file.
   docs/public/watcher_2.1         2341ebd  Shield Docs: Fixed link to plugin-descriptor.properties file.
   docs/public/watcher_2.2         925ada4  Shield Docs: Fixed link to plugin-descriptor.properties file.
-  docs/public/watcher_2.3         1bc2069  Docs: Bumped version & added RNs for 2.3.3.
+  docs/public/watcher_2.3         561aa5b  Docs: Added info about combining FLS & DLS. Closes #2133
   docs/public/watcher_watcher-1.0 819e861  Fixed Webhook action attributes. Closes #1035
   docs/public_v5.0.0-alpha2-docs  4d647ef  Docs: Added info about combining FLS & DLS. Closes #2133

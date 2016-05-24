@@ -61,15 +61,15 @@
 
 
 	
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/skel.css?q=500" />
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/style.css?q=500" />
-	<script src="https://static-www.elastic.co/static/js/skel.min.js?q=500"></script>
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/skel.css?q=500" />
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/style.css?q=500" />
+	<script src="https://stag-static-www.elastic.co/static/js/skel.min.js?q=500"></script>
 	
-		<script type="text/javascript">form_name = "" ; cdn_url="https://static-www.elastic.co";cdn_slug = "500"</script>
+		<script type="text/javascript">form_name = "" ; cdn_url="https://stag-static-www.elastic.co";cdn_slug = "500"</script>
 	
-	<script src="https://static-www.elastic.co/static/js/init.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/init.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
 	<!--<script type="text/javascript">
 	    (function() {
 	        var path = '//easy.myfonts.net/v2/js?sid=10336(font-family=Avenir+35+Light)&sid=10338(font-family=Avenir+55+Roman)&sid=10340(font-family=Avenir+85+Heavy)&sid=10344(font-family=Avenir+65+Medium)&key=nAD6PCOPrX',
@@ -965,15 +965,15 @@
 	
 	
 		.m-shortcuts li a.m-search {
-			background: url("https://static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-docs {
-			background: url("https://static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-contact {
-			background: url("https://static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 		
 </style>
@@ -1016,12 +1016,13 @@ pre-indexed in another index. Both formats are defined below with
 examples.</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_inline_shape_definition"></a>Inline Shape Definition<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-shape-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>Similar to the <code class="literal">geo_shape</code> type, the <code class="literal">geo_shape</code> Filter uses
 <a class="ulink" href="http://www.geojson.org" target="_top">GeoJSON</a> to represent shapes.</p><p>Given a document that looks like this:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
     "name": "Wind &amp; Wetter, Berlin, Germany",
-    "location": {
-        "type": "Point",
-        "coordinates": [13.400544, 52.530286]
-    }
+        "location": {
+            "type": "Point",
+            "coordinates": [13.400544, 52.530286]
+        }
 }</pre></div><p>The following query will find the point using the Elasticsearch’s
-<code class="literal">envelope</code> GeoJSON extension:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
+<code class="literal">envelope</code> GeoJSON extension:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
     "query":{
         "bool": {
             "must": {
@@ -1040,7 +1041,7 @@ examples.</p><div class="section"><div class="titlepage"><div><div><h3 class="ti
             }
         }
     }
-}</pre></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_pre_indexed_shape"></a>Pre-Indexed Shape<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-shape-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>The Query also supports using a shape which has already been indexed in
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-shape-query/1.json"></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_pre_indexed_shape"></a>Pre-Indexed Shape<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-shape-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>The Query also supports using a shape which has already been indexed in
 another index and/or index type. This is particularly useful for when
 you have a pre-defined list of shapes which are useful to your
 application and you want to reference this using a logical name (for
@@ -1056,25 +1057,28 @@ to <span class="emphasis"><em>shapes</em></span>.
 <code class="literal">path</code> - The field specified as path containing the pre-indexed shape.
 Defaults to <span class="emphasis"><em>shape</em></span>.
 </li></ul></div><p>The following is an example of using the Filter with a pre-indexed
-shape:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "bool": {
-        "must": {
-            "match_all": {}
-        },
-        "filter": {
-            "geo_shape": {
-                "location": {
-                    "indexed_shape": {
-                        "id": "DEU",
-                        "type": "countries",
-                        "index": "shapes",
-                        "path": "location"
+shape:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
+    "query": {
+        "bool": {
+            "must": {
+                "match_all": {}
+            },
+                "filter": {
+                    "geo_shape": {
+                        "location": {
+                            "indexed_shape": {
+                                "id": "DEU",
+                                "type": "countries",
+                                "index": "shapes",
+                                "path": "location"
+                            }
+                        }
                     }
                 }
-            }
         }
     }
-}</pre></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_spatial_relations"></a>Spatial Relations<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-shape-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>The <a class="link" href="geo-shape.html#spatial-strategy" title="Spatial strategiesedit">geo_shape strategy</a> mapping parameter determines
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-geo-shape-query/2.json"></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_spatial_relations"></a>Spatial Relations<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/geo-shape-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>The <a class="link" href="geo-shape.html#spatial-strategy" title="Spatial strategiesedit">geo_shape strategy</a> mapping parameter determines
 which spatial relation operators may be used at search time.</p><p>The following is a complete list of spatial relation operators available:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 <code class="literal">INTERSECTS</code> - (default) Return all documents whose <code class="literal">geo_shape</code> field
 intersects the query geometry.
@@ -1196,15 +1200,15 @@ is not mapped.</p></div></div><div class="navfooter"><span class="prev"><a href=
 
 <style type="text/css">
 	
-		.facebook{background:url("https://static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
+		.facebook{background:url("https://stag-static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
 	
-		.twitter{background:url("https://static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
+		.twitter{background:url("https://stag-static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
 	
-		.linkedin{background:url("https://static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
+		.linkedin{background:url("https://stag-static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
 	
-		.xing{background:url("https://static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
+		.xing{background:url("https://stag-static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
 	
-		.youtube{background:url("https://static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
+		.youtube{background:url("https://stag-static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
 	
 </style>
 
@@ -1229,8 +1233,8 @@ MktoForms2.loadForm("//app-lon02.marketo.com", "813-MAM-392", 1398,function(form
    	<script type="text/javascript">
 	var suggestionsUrl = "https://search.elastic.co/suggest";	
 </script>
-<script src="https://static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
-<script src="https://static-www.elastic.co/static/js/script.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/script.js?q=500"></script>
 
 
    	

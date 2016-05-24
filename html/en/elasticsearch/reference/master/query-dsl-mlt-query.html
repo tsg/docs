@@ -61,15 +61,15 @@
 
 
 	
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/skel.css?q=500" />
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/style.css?q=500" />
-	<script src="https://static-www.elastic.co/static/js/skel.min.js?q=500"></script>
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/skel.css?q=500" />
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/style.css?q=500" />
+	<script src="https://stag-static-www.elastic.co/static/js/skel.min.js?q=500"></script>
 	
-		<script type="text/javascript">form_name = "" ; cdn_url="https://static-www.elastic.co";cdn_slug = "500"</script>
+		<script type="text/javascript">form_name = "" ; cdn_url="https://stag-static-www.elastic.co";cdn_slug = "500"</script>
 	
-	<script src="https://static-www.elastic.co/static/js/init.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/init.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
 	<!--<script type="text/javascript">
 	    (function() {
 	        var path = '//easy.myfonts.net/v2/js?sid=10336(font-family=Avenir+35+Light)&sid=10338(font-family=Avenir+55+Roman)&sid=10340(font-family=Avenir+85+Heavy)&sid=10344(font-family=Avenir+65+Medium)&key=nAD6PCOPrX',
@@ -965,15 +965,15 @@
 	
 	
 		.m-shortcuts li a.m-search {
-			background: url("https://static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-docs {
-			background: url("https://static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-contact {
-			background: url("https://static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 		
 </style>
@@ -1015,61 +1015,70 @@ should be selected and how the query is formed. <code class="literal">more_like_
 shortened to <code class="literal">mlt</code> deprecated[5.0.0,use <code class="literal">more_like_this</code> instead).</p><p>The simplest use case consists of asking for documents that are similar to a
 provided piece of text. Here, we are asking for all movies that have some text
 similar to "Once upon a time" in their "title" and in their "description"
-fields, limiting the number of selected terms to 12.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "more_like_this" : {
-        "fields" : ["title", "description"],
-        "like" : "Once upon a time",
-        "min_term_freq" : 1,
-        "max_query_terms" : 12
-    }
-}</pre></div><p>A more complicated use case consists of mixing texts with documents already
-existing in the index. In this case, the syntax to specify a document is
-similar to the one used in the <a class="link" href="docs-multi-get.html" title="Multi Get API">Multi GET API</a>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "more_like_this" : {
-        "fields" : ["title", "description"],
-        "like" : [
-        {
-            "_index" : "imdb",
-            "_type" : "movies",
-            "_id" : "1"
-        },
-        {
-            "_index" : "imdb",
-            "_type" : "movies",
-            "_id" : "2"
-        },
-        "and potentially some more text here as well"
-        ],
-        "min_term_freq" : 1,
-        "max_query_terms" : 12
-    }
-}</pre></div><p>Finally, users can mix some texts, a chosen set of documents but also provide
-documents not necessarily present in the index. To provide documents not
-present in the index, the syntax is similar to <a class="link" href="docs-termvectors.html#docs-termvectors-artificial-doc" title="Example 3. Artificial documents">artificial documents</a>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "more_like_this" : {
-        "fields" : ["name.first", "name.last"],
-        "like" : [
-        {
-            "_index" : "marvel",
-            "_type" : "quotes",
-            "doc" : {
-                "name": {
-                    "first": "Ben",
-                    "last": "Grimm"
-                },
-                "tweet": "You got no idea what I'd... what I'd give to be invisible."
-              }
-        },
-        {
-            "_index" : "marvel",
-            "_type" : "quotes",
-            "_id" : "2"
+fields, limiting the number of selected terms to 12.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
+    "query": {
+        "more_like_this" : {
+            "fields" : ["title", "description"],
+            "like" : "Once upon a time",
+            "min_term_freq" : 1,
+            "max_query_terms" : 12
         }
-        ],
-        "min_term_freq" : 1,
-        "max_query_terms" : 12
     }
-}</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_how_it_works"></a>How it Works<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/mlt-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>Suppose we wanted to find all documents similar to a given input document.
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-mlt-query/1.json"></div><p>A more complicated use case consists of mixing texts with documents already
+existing in the index. In this case, the syntax to specify a document is
+similar to the one used in the <a class="link" href="docs-multi-get.html" title="Multi Get API">Multi GET API</a>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
+    "query": {
+        "more_like_this" : {
+            "fields" : ["title", "description"],
+            "like" : [
+            {
+                "_index" : "imdb",
+                "_type" : "movies",
+                "_id" : "1"
+            },
+            {
+                "_index" : "imdb",
+                "_type" : "movies",
+                "_id" : "2"
+            },
+            "and potentially some more text here as well"
+            ],
+            "min_term_freq" : 1,
+            "max_query_terms" : 12
+        }
+    }
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-mlt-query/2.json"></div><p>Finally, users can mix some texts, a chosen set of documents but also provide
+documents not necessarily present in the index. To provide documents not
+present in the index, the syntax is similar to <a class="link" href="docs-termvectors.html#docs-termvectors-artificial-doc" title="Example 3. Artificial documents">artificial documents</a>.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET /_search
+{
+    "query": {
+        "more_like_this" : {
+            "fields" : ["name.first", "name.last"],
+            "like" : [
+            {
+                "_index" : "marvel",
+                "_type" : "quotes",
+                "doc" : {
+                    "name": {
+                        "first": "Ben",
+                        "last": "Grimm"
+                    },
+                    "tweet": "You got no idea what I'd... what I'd give to be invisible."
+                  }
+            },
+            {
+                "_index" : "marvel",
+                "_type" : "quotes",
+                "_id" : "2"
+            }
+            ],
+            "min_term_freq" : 1,
+            "max_query_terms" : 12
+        }
+    }
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-mlt-query/3.json"></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_how_it_works"></a>How it Works<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/mlt-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>Suppose we wanted to find all documents similar to a given input document.
 Obviously, the input document itself should be its best match for that type of
 query. And the reason would be mostly, according to
 <a class="ulink" href="https://lucene.apache.org/core/4_9_0/core/org/apache/lucene/search/similarities/TFIDFSimilarity.html" target="_top">Lucene scoring formula</a>,
@@ -1084,31 +1093,32 @@ must be enabled or the fields must be <code class="literal">stored</code> or sto
 order to speed up analysis, it could help to store term vectors at index time.</p></div></div><p>For example, if we wish to perform MLT on the "title" and "tags.raw" fields,
 we can explicitly store their <code class="literal">term_vector</code> at index time. We can still
 perform MLT on the "description" and "tags" fields, as <code class="literal">_source</code> is enabled by
-default, but there will be no speed up on analysis for these fields.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">curl -s -XPUT 'http://localhost:9200/imdb/' -d '{
-  "mappings": {
-    "movies": {
-      "properties": {
-        "title": {
-          "type": "text",
-          "term_vector": "yes"
-         },
-         "description": {
-          "type": "text"
-        },
-        "tags": {
-          "type": "text",
-          "fields" : {
-            "raw": {
-              "type" : "text",
-              "analyzer": "keyword",
-              "term_vector" : "yes"
+default, but there will be no speed up on analysis for these fields.</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">PUT /imdb
+{
+    "mappings": {
+        "movies": {
+            "properties": {
+                "title": {
+                    "type": "text",
+                    "term_vector": "yes"
+                },
+                "description": {
+                    "type": "text"
+                },
+                "tags": {
+                    "type": "text",
+                    "fields" : {
+                        "raw": {
+                            "type" : "text",
+                            "analyzer": "keyword",
+                            "term_vector" : "yes"
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
-}</pre></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_parameters_8"></a>Parameters<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/mlt-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>The only required parameter is <code class="literal">like</code>, all other parameters have sensible
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-mlt-query/4.json"></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="_parameters_8"></a>Parameters<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/mlt-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>The only required parameter is <code class="literal">like</code>, all other parameters have sensible
 defaults. There are three types of parameters: one to specify the document
 input, the other one for term selection and for query formation.</p><h4><a id="_document_input_parameters"></a>Document Input Parameters<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/mlt-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4><div class="horizontal"><table cellpadding="4px" border="0"><colgroup><col /><col /></colgroup><tbody valign="top"><tr><td valign="top">
 <p>
@@ -1384,15 +1394,15 @@ Sets the boost value of the whole query. Defaults to <code class="literal">1.0</
 
 <style type="text/css">
 	
-		.facebook{background:url("https://static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
+		.facebook{background:url("https://stag-static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
 	
-		.twitter{background:url("https://static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
+		.twitter{background:url("https://stag-static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
 	
-		.linkedin{background:url("https://static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
+		.linkedin{background:url("https://stag-static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
 	
-		.xing{background:url("https://static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
+		.xing{background:url("https://stag-static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
 	
-		.youtube{background:url("https://static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
+		.youtube{background:url("https://stag-static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
 	
 </style>
 
@@ -1417,8 +1427,8 @@ MktoForms2.loadForm("//app-lon02.marketo.com", "813-MAM-392", 1398,function(form
    	<script type="text/javascript">
 	var suggestionsUrl = "https://search.elastic.co/suggest";	
 </script>
-<script src="https://static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
-<script src="https://static-www.elastic.co/static/js/script.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/script.js?q=500"></script>
 
 
    	

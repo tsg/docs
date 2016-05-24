@@ -61,15 +61,15 @@
 
 
 	
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/skel.css?q=500" />
-	<link type="text/css" rel="stylesheet" href="https://static-www.elastic.co/static/css/style.css?q=500" />
-	<script src="https://static-www.elastic.co/static/js/skel.min.js?q=500"></script>
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/skel.css?q=500" />
+	<link type="text/css" rel="stylesheet" href="https://stag-static-www.elastic.co/static/css/style.css?q=500" />
+	<script src="https://stag-static-www.elastic.co/static/js/skel.min.js?q=500"></script>
 	
-		<script type="text/javascript">form_name = "" ; cdn_url="https://static-www.elastic.co";cdn_slug = "500"</script>
+		<script type="text/javascript">form_name = "" ; cdn_url="https://stag-static-www.elastic.co";cdn_slug = "500"</script>
 	
-	<script src="https://static-www.elastic.co/static/js/init.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
-	<script src="https://static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/init.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.min.js?q=500"></script>
+	<script src="https://stag-static-www.elastic.co/static/js/jquery.cookie.js?q=500"></script>
 	<!--<script type="text/javascript">
 	    (function() {
 	        var path = '//easy.myfonts.net/v2/js?sid=10336(font-family=Avenir+35+Light)&sid=10338(font-family=Avenir+55+Roman)&sid=10340(font-family=Avenir+85+Heavy)&sid=10344(font-family=Avenir+65+Medium)&key=nAD6PCOPrX',
@@ -965,15 +965,15 @@
 	
 	
 		.m-shortcuts li a.m-search {
-			background: url("https://static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt174b13be89ff803c/m-search-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-docs {
-			background: url("https://static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt5ba03f594a7d610a/m-guide-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 	
 		.m-shortcuts li a.m-contact {
-			background: url("https://static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
+			background: url("https://stag-static-www.elastic.co/assets/blt38c3e853c4b1174d/m-contact-icon.png?q=500") no-repeat scroll center center rgba(0, 0, 0, 0);
 			background-size: contain;}
 		
 </style>
@@ -1011,15 +1011,18 @@ version&#39;s documentation here</a>.
 The type of the Lucene query depends on the field type, for <code class="literal">string</code>
 fields, the <code class="literal">TermRangeQuery</code>, while for number/date fields, the query is
 a <code class="literal">NumericRangeQuery</code>. The following example returns all documents where
-<code class="literal">age</code> is between <code class="literal">10</code> and <code class="literal">20</code>:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "range" : {
-        "age" : {
-            "gte" : 10,
-            "lte" : 20,
-            "boost" : 2.0
+<code class="literal">age</code> is between <code class="literal">10</code> and <code class="literal">20</code>:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET _search
+{
+    "query": {
+        "range" : {
+            "age" : {
+                "gte" : 10,
+                "lte" : 20,
+                "boost" : 2.0
+            }
         }
     }
-}</pre></div><p>The <code class="literal">range</code> query accepts the following parameters:</p><div class="horizontal"><table cellpadding="4px" border="0"><colgroup><col /><col /></colgroup><tbody valign="top"><tr><td valign="top">
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-range-query/1.json"></div><p>The <code class="literal">range</code> query accepts the following parameters:</p><div class="horizontal"><table cellpadding="4px" border="0"><colgroup><col /><col /></colgroup><tbody valign="top"><tr><td valign="top">
 <p>
 <code class="literal">gte</code>
 </p>
@@ -1060,14 +1063,17 @@ Less-than
 Sets the boost value of the query, defaults to <code class="literal">1.0</code>
 </p>
 </td></tr></tbody></table></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="ranges-on-dates"></a>Ranges on date fields<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/range-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h3></div></div></div><p>When running <code class="literal">range</code> queries on fields of type <a class="link" href="date.html" title="Date datatype"><code class="literal">date</code></a>, ranges can be
-specified using <a class="xref" href="common-options.html#date-math" title="Date Mathedit">the section called “Date Math<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/api-conventions.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a>”</a>:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "range" : {
-        "date" : {
-            "gte" : "now-1d/d",
-            "lt" :  "now/d"
+specified using <a class="xref" href="common-options.html#date-math" title="Date Mathedit">the section called “Date Math<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/api-conventions.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a>”</a>:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET _search
+{
+    "query": {
+        "range" : {
+            "date" : {
+                "gte" : "now-1d/d",
+                "lt" :  "now/d"
+            }
         }
     }
-}</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_date_math_and_rounding"></a>Date math and rounding<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/range-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4></div></div></div><p>When using <a class="link" href="common-options.html#date-math" title="Date Mathedit">date math</a> to round dates to the nearest day, month,
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-range-query/2.json"></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_date_math_and_rounding"></a>Date math and rounding<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/range-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4></div></div></div><p>When using <a class="link" href="common-options.html#date-math" title="Date Mathedit">date math</a> to round dates to the nearest day, month,
 hour, etc, the rounded dates depend on whether the ends of the ranges are
 inclusive or exclusive.</p><p>Rounding up moves to the last millisecond of the rounding scope, and rounding
 down to the first millisecond of the rounding scope. For example:</p><div class="horizontal"><table cellpadding="4px" border="0"><colgroup><col /><col /></colgroup><tbody valign="top"><tr><td valign="top">
@@ -1108,25 +1114,31 @@ down to the first millisecond of the rounding scope. For example:</p><div class=
 </p>
 </td></tr></tbody></table></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_date_format_in_range_queries"></a>Date format in range queries<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/range-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4></div></div></div><p>Formatted dates will be parsed using the <a class="link" href="mapping-date-format.html" title="format"><code class="literal">format</code></a>
 specified on the <a class="link" href="date.html" title="Date datatype"><code class="literal">date</code></a> field by default, but it can be overridden by
-passing the <code class="literal">format</code> parameter to the <code class="literal">range</code> query:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "range" : {
-        "born" : {
-            "gte": "01/01/2012",
-            "lte": "2013",
-            "format": "dd/MM/yyyy||yyyy"
+passing the <code class="literal">format</code> parameter to the <code class="literal">range</code> query:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET _search
+{
+    "query": {
+        "range" : {
+            "born" : {
+                "gte": "01/01/2012",
+                "lte": "2013",
+                "format": "dd/MM/yyyy||yyyy"
+            }
         }
     }
-}</pre></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_time_zone_in_range_queries"></a>Time zone in range queries<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/range-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4></div></div></div><p>Dates can be converted from another timezone to UTC either by specifying the
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-range-query/3.json"></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="_time_zone_in_range_queries"></a>Time zone in range queries<a href="https://github.com/elastic/elasticsearch/edit/master/docs/reference/query-dsl/range-query.asciidoc" class="edit_me" title="Edit this page on GitHub" rel="nofollow">edit</a></h4></div></div></div><p>Dates can be converted from another timezone to UTC either by specifying the
 time zone in the date value itself (if the <a class="link" href="mapping-date-format.html" title="format"><code class="literal">format</code></a>
-accepts it), or it can be specified as the <code class="literal">time_zone</code> parameter:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">{
-    "range" : {
-        "timestamp" : {
-            "gte": "2015-01-01 00:00:00", <a id="CO138-1"></a><span><img src="images/icons/callouts/1.png" alt="" /></span>
-            "lte": "now", <a id="CO138-2"></a><span><img src="images/icons/callouts/2.png" alt="" /></span>
-            "time_zone": "+01:00"
+accepts it), or it can be specified as the <code class="literal">time_zone</code> parameter:</p><div class="pre_wrapper"><pre class="programlisting prettyprint lang-js">GET _search
+{
+    "query": {
+        "range" : {
+            "timestamp" : {
+                "gte": "2015-01-01 00:00:00", <a id="CO138-1"></a><span><img src="images/icons/callouts/1.png" alt="" /></span>
+                "lte": "now", <a id="CO138-2"></a><span><img src="images/icons/callouts/2.png" alt="" /></span>
+                "time_zone": "+01:00"
+            }
         }
     }
-}</pre></div><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO138-1"><span><img src="images/icons/callouts/1.png" alt="" /></span></a> </p></td><td valign="top" align="left"><p>
+}</pre></div><div class="console_widget" data-snippet="snippets/query-dsl-range-query/4.json"></div><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO138-1"><span><img src="images/icons/callouts/1.png" alt="" /></span></a> </p></td><td valign="top" align="left"><p>
 This date will be converted to <code class="literal">2014-12-31T23:00:00 UTC</code>.
 </p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO138-2"><span><img src="images/icons/callouts/2.png" alt="" /></span></a> </p></td><td valign="top" align="left"><p>
 <code class="literal">now</code> is not affected by the <code class="literal">time_zone</code> parameter (dates must be stored as UTC).
@@ -1235,15 +1247,15 @@ This date will be converted to <code class="literal">2014-12-31T23:00:00 UTC</co
 
 <style type="text/css">
 	
-		.facebook{background:url("https://static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
+		.facebook{background:url("https://stag-static-www.elastic.co/assets/bltda40eebd7c7cae9a/facebook.svg?q=500") no-repeat;}
 	
-		.twitter{background:url("https://static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
+		.twitter{background:url("https://stag-static-www.elastic.co/assets/bltfd3b1511512f4632/twitter.svg?q=500") no-repeat;}
 	
-		.linkedin{background:url("https://static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
+		.linkedin{background:url("https://stag-static-www.elastic.co/assets/blt6b4f6f8d6b96f814/linkedin.svg?q=500") no-repeat;}
 	
-		.xing{background:url("https://static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
+		.xing{background:url("https://stag-static-www.elastic.co/assets/blta76b2ae2b2f10a98/xing.svg?q=500") no-repeat;}
 	
-		.youtube{background:url("https://static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
+		.youtube{background:url("https://stag-static-www.elastic.co/assets/blt5761648c9581fb53/youtube.svg?q=500") no-repeat;}
 	
 </style>
 
@@ -1268,8 +1280,8 @@ MktoForms2.loadForm("//app-lon02.marketo.com", "813-MAM-392", 1398,function(form
    	<script type="text/javascript">
 	var suggestionsUrl = "https://search.elastic.co/suggest";	
 </script>
-<script src="https://static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
-<script src="https://static-www.elastic.co/static/js/script.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/jquery.autocomplete.js?q=500"></script>
+<script src="https://stag-static-www.elastic.co/static/js/script.js?q=500"></script>
 
 
    	
